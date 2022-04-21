@@ -61,6 +61,11 @@ const List = () => {
 		}
 	}
 
+	function irAPagina(id) {
+		console.log(id);
+		setPage(id);
+	}
+
 	function previaPagina() {
 		if (1 < page) {
 			setPage(page - 1);
@@ -68,17 +73,20 @@ const List = () => {
 	}
 
 	function actualizarPaginacion() {
-		var tmp = [];
-		for (var i = 1; i <= pages; i++) {
-			tmp.push(
-				<Pagination.Item
-					key={i}
-					active={i === page}>
-					{i}
-				</Pagination.Item>
-			);
-		}
-		setPaginationItems(tmp);
+		var tmp = new Array(pages);
+		tmp.fill(1);
+		setPaginationItems(
+			tmp.map((val, i) => {
+				return (
+					<Pagination.Item
+						onClick={() => irAPagina(i + 1)}
+						key={i + 1}
+						active={i + 1 === page}>
+						{i + 1}
+					</Pagination.Item>
+				);
+			})
+		);
 	}
 
 	return (
