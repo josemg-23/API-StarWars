@@ -7,69 +7,60 @@ import {
 	PaginationNext,
 	PaginationPrev,
 } from "react-bootstrap";
-
+import { people } from "../apiStarWars.js";
 const List = () => {
-	var [data, setData] = useState([
-		{
-			uid: "1",
-			name: "Luke Skywalker",
-			url: "https://www.swapi.tech/api/people/1",
-		},
-		{
-			uid: "2",
-			name: "C-3PO",
-			url: "https://www.swapi.tech/api/people/2",
-		},
-		{
-			uid: "3",
-			name: "R2-D2",
-			url: "https://www.swapi.tech/api/people/3",
-		},
-		{
-			uid: "4",
-			name: "Darth Vader",
-			url: "https://www.swapi.tech/api/people/4",
-		},
-		{
-			uid: "5",
-			name: "Leia Organa",
-			url: "https://www.swapi.tech/api/people/5",
-		},
-	]);
+	var [data, setData] = useState([]);
 	var [page, setPage] = useState(1);
-	var [pageNext, setPageNext] = useState(2);
-	var [pagePrevious, setPagePrevious] = useState(0);
-	var [pages, setPages] = useState(4);
+	var [pages, setPages] = useState(1);
 	var [paginationItems, setPaginationItems] = useState([]);
 
-	useEffect(() => {
-		actualizarPaginacion();
-	}, [page, pages]);
-
-	function getItems() {
-		return data.map((person) => {
-			return (
-				<ListGroup.Item key={person.uid}>{person.name}</ListGroup.Item>
-			);
+	function irAPagina(id) {
+		people.getQuery(id).then((data) => {
+			console.log("Cargando pagina ... ", id);
+			// Se actualizan los valores del estado
+			setData(data.results);
+			setPage(id);
+			// Esta actualizacion tiene un hook
+			setPages(data.total_pages);
+			console.log("Cargada pagina ", id);
 		});
 	}
 
 	function siguientePagina() {
 		if (page < pages) {
-			console.log(page);
-			setPage(page + 1);
+			if (!ocupado) irAPagina(page + 1);
 		}
-	}
-
-	function irAPagina(id) {
-		console.log(id);
-		setPage(id);
 	}
 
 	function previaPagina() {
 		if (1 < page) {
-			setPage(page - 1);
+			if (!ocupado) irAPagina(page - 1);
 		}
+	}
+
+	useEffect(() => {
+		console.log("Componente montado");
+		irAPagina(1);
+		return () => {
+			console.log("Componente desmontado");
+		};
+	}, []);
+
+	useEffect(() => {
+		console.log("Actualizando paginas");
+		actualizarPaginacion();
+		return () => {
+			console.log("Finalizada la actualizacion de paginas");
+		};
+	}, [pages]);
+
+	function getItems() {
+		if (!data) return;
+		return data.map((person) => {
+			return (
+				<ListGroup.Item key={person.uid}>{person.name}</ListGroup.Item>
+			);
+		});
 	}
 
 	function actualizarPaginacion() {
