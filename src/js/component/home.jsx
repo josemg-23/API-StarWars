@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
-import List from "./List.jsx";
 
 //create your first component
 const Home = () => {
@@ -13,7 +12,7 @@ const Home = () => {
 			</Row>
 			<Row>
 				<Col>
-					<List />
+					<h1>Pagina principal</h1>
 				</Col>
 			</Row>
 			<p>

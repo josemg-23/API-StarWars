@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/index.css";
 
 //import your own components
-import Home from "./component/home.jsx";
+import Index from "./component/index.jsx";
 
 //render your react application
-ReactDOM.render(<Home />, document.querySelector("#app"));
+ReactDOM.render(<Index />, document.querySelector("#app"));

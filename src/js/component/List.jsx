@@ -6,8 +6,12 @@ import {
 	PaginationItem,
 	PaginationNext,
 	PaginationPrev,
+	Button,
 } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import { people } from "../apiStarWars.js";
+import { Link } from "react-router-dom";
+
 const List = () => {
 	var [data, setData] = useState([]);
 	var [page, setPage] = useState(1);
@@ -28,13 +32,13 @@ const List = () => {
 
 	function siguientePagina() {
 		if (page < pages) {
-			if (!ocupado) irAPagina(page + 1);
+			irAPagina(page + 1);
 		}
 	}
 
 	function previaPagina() {
 		if (1 < page) {
-			if (!ocupado) irAPagina(page - 1);
+			irAPagina(page - 1);
 		}
 	}
 
@@ -58,31 +62,47 @@ const List = () => {
 		if (!data) return;
 		return data.map((person) => {
 			return (
-				<ListGroup.Item key={person.uid}>{person.name}</ListGroup.Item>
+				<ListGroup.Item key={person.uid}>
+					<Card style={{ width: "18rem" }}>
+						<Card.Img variant="top" width="180" height="100" />
+						<Card.Body>
+							<Card.Title>{person.name}</Card.Title>
+							<h5>Genero: {person.gender}</h5>
+							<h5>Cabello: {person.hair_color}</h5>
+							<h5>Ojos: {person.eye_color}</h5>
+							<Link
+								className="btn btn-primary"
+								to={`/personas/${person.uid}`}>
+								Leer Mas
+							</Link>
+							{/* <Button variant="primary">Leer más</Button> */}
+						</Card.Body>
+					</Card>
+				</ListGroup.Item>
 			);
 		});
 	}
 
 	function actualizarPaginacion() {
-		var tmp = new Array(pages);
-		tmp.fill(1);
-		setPaginationItems(
-			tmp.map((val, i) => {
-				return (
-					<Pagination.Item
-						onClick={() => irAPagina(i + 1)}
-						key={i + 1}
-						active={i + 1 === page}>
-						{i + 1}
-					</Pagination.Item>
-				);
-			})
-		);
+		var tmp = [];
+		for (let i = 1; i <= pages; i++) {
+			tmp.push(
+				<Pagination.Item
+					onClick={() => irAPagina(i)}
+					key={i}
+					active={i === page}>
+					{i}
+				</Pagination.Item>
+			);
+		}
+		setPaginationItems(tmp);
 	}
 
 	return (
 		<div>
-			<ListGroup variant="flush">{getItems()}</ListGroup>
+			<ListGroup horizontal style={{ overflowX: "scroll" }}>
+				{getItems()}
+			</ListGroup>
 			<Pagination>
 				<Pagination.Prev onClick={previaPagina} />
 				{paginationItems}

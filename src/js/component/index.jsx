@@ -1,22 +1,22 @@
 import React from "react";
-import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./home.jsx";
+import Layout from "./Layout.jsx";
 import List from "./List.jsx";
+import { People } from "./people";
 
 //create your first component
 const Index = () => {
 	return (
 		<div>
-			<BrowserRouter basename="/">
-				<Switch>
-					<Route exact path="/">
-						<Home />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Layout />}>
+						<Route index element={<Home />} />
+						<Route path="personas" element={<List />} />
+						<Route path="personas/:id" element={<People />} />
 					</Route>
-
-					<Route exact path="/list">
-						<List />
-					</Route>
-				</Switch>
+				</Routes>
 			</BrowserRouter>
 		</div>
 	);
