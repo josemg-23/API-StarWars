@@ -13,8 +13,9 @@ const Index = () => {
 				<Routes>
 					<Route path="/" element={<Layout />}>
 						<Route index element={<Home />} />
-						<Route path="personas" element={<List />} />
-						<Route path="personas/:id" element={<People />} />
+						<Route path="personas" element={<List />}>
+							<Route path=":id" element={<People />} />
+						</Route>
 					</Route>
 				</Routes>
 			</BrowserRouter>
