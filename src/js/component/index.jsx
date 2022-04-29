@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./home.jsx";
 import Layout from "./Layout.jsx";
-import List, { People } from "./people";
+import ListPeople, { People } from "./people";
 
 //create your first component
 const Index = () => {
@@ -12,8 +12,10 @@ const Index = () => {
 				<Routes>
 					<Route path="/" element={<Layout />}>
 						<Route index element={<Home />} />
-						<Route path="personas" element={<List />} />
+						<Route path="personas" element={<ListPeople />} />
 						<Route path="personas/:id" element={<People />} />
+						<Route path="planets" element={<ListPlanets />} />
+						<Route path="planets/:id" element={<Planets />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

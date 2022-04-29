@@ -1,5 +1,5 @@
-import List from "./list.jsx";
+import ListPeople from "./list.jsx";
 import People from "./people.jsx";
 
-export default List;
+export default ListPeople;
 export { People };

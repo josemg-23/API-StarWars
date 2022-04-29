@@ -15,11 +15,6 @@ const Home = () => {
 					<h1>Pagina principal</h1>
 				</Col>
 			</Row>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
 		</Container>
 	);
 };

@@ -9,17 +9,17 @@ import {
 	Button,
 } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { people } from "../../apiStarWars.js";
+import { planets } from "../../apiStarWars.js";
 import { Link } from "react-router-dom";
 
-const ListPeople = () => {
+const ListPlanets = () => {
 	var [data, setData] = useState([]);
 	var [page, setPage] = useState(1);
 	var [pages, setPages] = useState(1);
 	var [paginationItems, setPaginationItems] = useState([]);
 
 	function irAPagina(id) {
-		people.getQuery(id).then((data) => {
+		planets.getQuery(id).then((data) => {
 			console.log("Cargando pagina ... ", id);
 			// Se actualizan los valores del estado
 			setData(data.results);
@@ -60,21 +60,21 @@ const ListPeople = () => {
 
 	function getItems() {
 		if (!data) return;
-		return data.map((person) => {
+		return data.map((planet) => {
 			return (
-				<ListGroup.Item key={person.uid}>
+				<ListGroup.Item key={planet.uid}>
 					<Card style={{ width: "18rem" }}>
 						<Card.Img
 							className="img-fluid"
 							variant="top"
 							height="50"
-							src={person.img}
+							src={planet.img}
 						/>
 						<Card.Body>
-							<Card.Title>{person.name}</Card.Title>
+							<Card.Title>{planet.name}</Card.Title>
 							<Link
 								className="btn btn-primary"
-								to={`/personas/${person.uid}`}>
+								to={`/planets/${planet.uid}`}>
 								Leer Mas
 							</Link>
 							{/* <Button variant="primary">Leer más</Button> */}
@@ -113,4 +113,4 @@ const ListPeople = () => {
 		</div>
 	);
 };
-export default ListPeople;
+export default ListPlanets;
