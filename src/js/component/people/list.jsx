@@ -56,7 +56,7 @@ const List = () => {
 		return () => {
 			console.log("Finalizada la actualizacion de paginas");
 		};
-	}, [pages]);
+	}, [pages, pages]);
 
 	function getItems() {
 		if (!data) return;
@@ -64,12 +64,14 @@ const List = () => {
 			return (
 				<ListGroup.Item key={person.uid}>
 					<Card style={{ width: "18rem" }}>
-						<Card.Img variant="top" width="180" height="100" />
+						<Card.Img
+							className="img-fluid"
+							variant="top"
+							height="50"
+							src={person.img}
+						/>
 						<Card.Body>
 							<Card.Title>{person.name}</Card.Title>
-							<h5>Genero: {person.gender}</h5>
-							<h5>Cabello: {person.hair_color}</h5>
-							<h5>Ojos: {person.eye_color}</h5>
 							<Link
 								className="btn btn-primary"
 								to={`/personas/${person.uid}`}>
