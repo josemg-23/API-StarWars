@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./home.jsx";
 import Layout from "./Layout.jsx";
 import ListPeople, { People } from "./people";
+import Listplanets, { Planets } from "./planets";
 
 //create your first component
 const Index = () => {
@@ -14,7 +15,7 @@ const Index = () => {
 						<Route index element={<Home />} />
 						<Route path="personas" element={<ListPeople />} />
 						<Route path="personas/:id" element={<People />} />
-						<Route path="planets" element={<ListPlanets />} />
+						<Route path="planets" element={<Listplanets />} />
 						<Route path="planets/:id" element={<Planets />} />
 					</Route>
 				</Routes>

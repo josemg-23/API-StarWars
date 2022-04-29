@@ -67,7 +67,7 @@ const planets = {
 	getQuery: async (page = 1, limit = 10) => {
 		// Ejemplo de peticion https://www.swapi.tech/api/people?limit=20&page=2
 		try {
-			const resp = await fetch(`${baseUrl}?limit=${limit}&page=${page}`);
+			const resp = await fetch(`${baseUrl2}?limit=${limit}&page=${page}`);
 			if (resp.ok) {
 				let res = await resp.json();
 				res.results = res.results.map((planet) => {

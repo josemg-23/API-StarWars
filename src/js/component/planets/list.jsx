@@ -12,7 +12,7 @@ import Card from "react-bootstrap/Card";
 import { planets } from "../../apiStarWars.js";
 import { Link } from "react-router-dom";
 
-const ListPlanets = () => {
+const Listplanets = () => {
 	var [data, setData] = useState([]);
 	var [page, setPage] = useState(1);
 	var [pages, setPages] = useState(1);
@@ -113,4 +113,4 @@ const ListPlanets = () => {
 		</div>
 	);
 };
-export default ListPlanets;
+export default Listplanets;
