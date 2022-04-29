@@ -11,13 +11,13 @@ const Planets = () => {
 	function getPlanet() {
 		return (
 			<Card style={{ width: "18rem" }}>
-				<Card.Img src={person.img} variant="top" height="300" />
+				<Card.Img src={planet.img} variant="top" height="300" />
 				<Card.Body>
 					<Card.Title>{planet.name}</Card.Title>
-					<h5>{planet.description}</h5>
-					<h5>Genero: {planet.gender}</h5>
-					<h5>Cabello: {planet.hair_color}</h5>
-					<h5>Ojos: {planet.eye_color}</h5>
+					<h5>Climate:{planet.climate}</h5>
+					<h5>Diameter: {planet.diameter}</h5>
+					<h5>Population: {planet.population}</h5>
+					<h5>Terrain: {planet.terrain}</h5>
 				</Card.Body>
 			</Card>
 		);
@@ -25,7 +25,7 @@ const Planets = () => {
 
 	return (
 		<div>
-			<pre>{JSON.stringify(person)}</pre>
+			<pre>{JSON.stringify(planet)}</pre>
 			{getPlanet()}
 		</div>
 	);

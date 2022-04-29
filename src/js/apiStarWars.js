@@ -72,7 +72,7 @@ const planets = {
 				let res = await resp.json();
 				res.results = res.results.map((planet) => {
 					return {
-						img: `https://starwars-visualguide.com/assets/img/characters/${planet.uid}.jpg`,
+						img: `https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`,
 						...planet,
 					};
 				});
